@@ -1,6 +1,8 @@
 package main
 
 import (
+	// "net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
@@ -12,7 +14,9 @@ func main() {
 		r.GET("/login", func(c *gin.Context) {
 			sessionID := uuid.New().String()
 
-			c.SetCookie("sessionID", sessionID, 3600, "/", "localhost", false, true)
+			// c.SetSameSite(http.SameSiteNoneMode)
+			
+			c.SetCookie("sessionID", sessionID, 3600, "/", "", true, true)
 			c.JSON(200, gin.H{ "message": "cookieをセットしました。"  })
 		})
 
